@@ -21,6 +21,7 @@ namespace AuthServer.Service.Services
             {
                 Email = createUserDto.Email,
                 UserName = createUserDto.UserName,
+                City = "Deneme"
             };
 
             var result = await _userManager.CreateAsync(user, createUserDto.Password);
