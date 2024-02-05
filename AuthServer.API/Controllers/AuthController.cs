@@ -19,6 +19,7 @@ namespace AuthServer.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateToken(LoginDto loginDto)
         {
+
             var result = await _authenticationService.CreateTokenAsync(loginDto);
             return ActionResultInstance(result);
         }

@@ -17,7 +17,12 @@ namespace AuthServer.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(CreateUserDto createUserDto) => ActionResultInstance(await _userService.CreateUserAsync(createUserDto));
+        public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
+        {
+            //throw new CustomException("veritabanı ile ilgili Bir Hata meydana geldi");
+            return ActionResultInstance(await _userService.CreateUserAsync(createUserDto));
+
+        }
 
         [Authorize]
         [HttpGet]
@@ -27,6 +32,15 @@ namespace AuthServer.API.Controllers
 
             //gelen token içindeki payloaduna tanımlı alandan username kısmını çıkarır             
             //HttpContext.User.Claims.Where(x=>x.Type=="username").FirstOrDefault() alternatif
+
+        }
+
+
+        [HttpPost("CreateUserRole/{userName}")]
+        public async Task<IActionResult> CreateUserRole(string userName)
+        {
+            return ActionResultInstance(await _userService.CreateUserRole(userName));
+
 
         }
     }
